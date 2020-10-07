@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor({ url, headers }) {
     this._url = url;
     this._headers = headers;
@@ -8,7 +8,6 @@ export default class Api {
    */
   _checkErrors(res) {
     if (res.ok) {
-      console.log(res, `Everything is good: ${res.status} ${res.statusText}`);
       return res.json();
     } else {
       return Promise.reject(`Something is wrong: 4 8 15 16 23 42 && ${res.status} ${res.statusText}`);
@@ -106,3 +105,13 @@ export default class Api {
       .then(this._checkErrors);
   }
 }
+
+const api = new Api({
+  url: 'https://mesto.nomoreparties.co/v1/cohort-15',
+  headers: {
+    authorization: '1ed91742-56fd-4a56-812b-580db32d6be2',
+    'Content-Type': 'application/json'
+  }
+});
+
+export default api;
